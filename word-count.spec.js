@@ -131,4 +131,12 @@ describe('countWords', () => {
     };
     expect(countWords(",\n,one,\n ,two \n 'three'")).toEqual(expectedCounts);
   });
+  
+  test('handles no phrase entered', () => {
+    expect(countWords()).toEqual(new Error('Please enter a phrase to continue.'));
+  });
+
+  test('handles empty string entered', () => {
+    expect(countWords("")).toEqual(new Error('Please enter a phrase to continue.'));
+  });
 });
