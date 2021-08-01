@@ -1,4 +1,8 @@
-export const countWords = (sentence) => {
+interface IWordCount {
+  [key: string]: number;
+}
+
+export const countWords = (sentence: string): IWordCount | Error => {
   try
   {
     if(!sentence || sentence === '')
@@ -16,9 +20,9 @@ export const countWords = (sentence) => {
 
     const wordsArr = standardizedPhrase.split(' ');
 
-    const distinctWords = [...new Set(wordsArr)];
+    const distinctWords: string[] = [...new Set(wordsArr)];
 
-    return distinctWords.reduce((acc, curr) => {
+    return distinctWords.reduce<IWordCount>((acc, curr) => {
       acc[curr] = wordsArr.filter(word => word === curr).length;
       return acc;
     },{})
